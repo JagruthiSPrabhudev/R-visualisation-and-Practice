@@ -12,16 +12,16 @@ for(i in 1:length(files)){
 }
 
 section.id = paste(str_sub(as.character(dat$PrimarySubject), -6, -2),
-                   "20183", sep = "-") # need to change the term for each term 
+                   "Term", sep = "-") # need to change the term for each term 
 dat = cbind(section.id, dat)
 
 # skip this when read SVM data only
 
-dat.subject = dat[dat$TaskType == "SubjectViewManagement",] 
+dat.subject = dat[dat$TaskType == "SVM_data",] 
 
 # end skip code
 
-dashboard = read_xlsx("Dashboard Viewer.xlsx")
+dashboard = read_xlsx("excel_data.xlsx")
 
 # join tables
 
@@ -44,7 +44,7 @@ full.dat2 = full.dat %>%
   select(-c(`Start Date`, `End Date`, Name)) %>% 
   filter(TaskOwnerStatus != "Deleted")
 
-write.csv(full.dat2, "Tableau.data.csv", row.names = F)
+write.csv(full.dat2, "data.csv", row.names = F)
 
 
 
